@@ -91,6 +91,7 @@ add_library(sfcw_core
     src/Plotting.cpp
     src/Synthesiser.cpp
     src/Target.cpp
+    src/Simulator.cpp
 )
 target_include_directories(sfcw_core PUBLIC inc)
 
@@ -106,7 +107,7 @@ target_link_libraries(sfcw_core
 
 
 add_executable(${PROJECT_NAME} 
-  SimpleSimulator.cpp
+  main.cpp
 )
 
 add_dependencies(${PROJECT_NAME} project_fftw)

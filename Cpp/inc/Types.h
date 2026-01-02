@@ -19,12 +19,13 @@ class Phasor{
 
         // Getters 
         float GetMagnitude() const;
+        float GetMagnitude_dB() const;
         float GetPhaseDegrees() const;
         float GetPhaseRad() const;
 
         // Modifiers
-        void ApplyGain(const float gain_dB);
-        void ApplyPhaseShift(const float phaseRad);
+        void ApplyGain_dB(const float gain_dB);
+        void ApplyPhaseShiftRad(const float phaseRad);
 
     private: 
         IQ m_IQData;
@@ -35,10 +36,11 @@ class FrequencyStep{
         FrequencyStep(float frequencyHz);
         FrequencyStep(float frequencyHz, Phasor phasor);
 
-        IQ_1D GetTimeDomain(float lengthSeconds, float samplingRateHz);
+        IQ_1D GetTimeDomain(float samplingRateHz);
     public:
         float m_fFrequencyHz=0;
         float m_fIntededFrequencyHz=0;
+        float m_fTransmitTimeSeconds=0.0f;
         Phasor m_phasor{};
         float m_fPhaseNoise=0;
         float m_fAmplitudeNoise=0;

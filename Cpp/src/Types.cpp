@@ -23,6 +23,11 @@ float Phasor::GetMagnitude() const
     return std::abs(m_IQData);
 }
 
+float Phasor::GetMagnitude_dB() const
+{
+    return 20*log10(GetMagnitude());
+}
+
 float Phasor::GetPhaseDegrees() const
 {
     return GetPhaseRad() * 180.0f / M_PI;}
@@ -33,14 +38,14 @@ float Phasor::GetPhaseRad() const
 }
 
 
-void Phasor::ApplyGain(const float gain_dB)
+void Phasor::ApplyGain_dB(const float gain_dB)
 {
     float gainLinear = std::pow(10.0f,gain_dB/20.0f);
     m_IQData *= gainLinear;
 
 }
 
-void Phasor::ApplyPhaseShift(const float phaseRad)
+void Phasor::ApplyPhaseShiftRad(const float phaseRad)
 {    
     m_IQData *= IQ(std::cos(phaseRad), std::sin(phaseRad));
 }
@@ -57,9 +62,9 @@ m_phasor(phasor)
 {
 }
 
-IQ_1D FrequencyStep::GetTimeDomain(float lengthSeconds, float samplingRateHz)
+IQ_1D FrequencyStep::GetTimeDomain(float samplingRateHz)
 {
-    size_t numSamples = static_cast<size_t>(lengthSeconds * samplingRateHz);
+    size_t numSamples = static_cast<size_t>(m_fTransmitTimeSeconds * samplingRateHz);
     IQ_1D signal(numSamples);
 
     float baseMag = m_phasor.GetMagnitude();

@@ -9,7 +9,6 @@ m_iNumSteps(numSteps)
 
 Sweep Synthesiser::GenerateSweep()
 {
-    std::cout<<"Generating Sweep"<<std::endl;
 
     Sweep outputSweep;
 

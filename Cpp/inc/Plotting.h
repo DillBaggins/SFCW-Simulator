@@ -5,6 +5,7 @@
 #include <complex>
 #include <mutex>
 #include "implot.h"
+#include "SimulatorControl.h"
 
 // -----------------------------
 // AsyncPlotBuffer
@@ -46,9 +47,20 @@ struct PlotData {
     AsyncPlotBuffer<float> Q;
 };
 
-// -----------------------------
-// Rendering API
-// -----------------------------
+struct SweepProfileData{
+    AsyncPlotBuffer<float> time;
+    AsyncPlotBuffer<float> frequency;
+
+};
+
+struct AllPlotsData{
+    SweepProfileData sweepProfile;
+};
+
 void RenderIQPlots(PlotData& plots);
+
+void RenderFrequencyProfile(SweepProfileData& plots);
+
+void RenderSimulatorControls(SimulatorControl* ctrl);
 
 #endif
